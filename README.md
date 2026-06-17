@@ -6,5 +6,8 @@ O objetivo é consolidar conhecimentos, registrar aprendizados e acompanhar a ev
 
 ## 📌 Comandos
 
-**Commit assinado:**  
-git commit -s -m "Mensagem"
+**Commit assinado:**
+- git commit -s -m "Mensagem"
+
+**Sites úteis:**
+- https://temp-mail.org
