@@ -5,7 +5,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import br.dev.juniorlatalisa.screenmatch.model.DadosSerie;
 import br.dev.juniorlatalisa.screenmatch.service.ConsumoAPI;
+import br.dev.juniorlatalisa.screenmatch.service.ConverteDados;
 
 @SpringBootApplication
 public class ScreenmatchApplication implements CommandLineRunner {
@@ -20,10 +22,13 @@ public class ScreenmatchApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		final var consumoApi = new ConsumoAPI();
-		var json = consumoApi.obterDados(String.format("https://www.omdbapi.com/?t=gilmore+girls&apikey=%s", apiKey));
+		final var json = consumoApi.obterDados(String //
+				.format("https://www.omdbapi.com/?t=gilmore+girls&apikey=%s", apiKey));
+		final var conversor = new ConverteDados();
+		final var serie = conversor.obterDados(DadosSerie.class, json);
 		// final var json =
 		// consumoAPI.obterDados("https://coffee.alexflipnote.dev/random.json");
-		System.out.println(json);
+		System.out.println(serie);
 	}
 
 }

@@ -1,54 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>4.1.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>br.dev.juniorlatalisa</groupId>
-	<artifactId>screenmatch</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
-	<properties>
-		<java.version>17</java.version>
-	</properties>
-	<dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- ========================= -->
+    <!-- 📦 Metadados do Projeto   -->
+    <!-- ========================= -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.1.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>br.dev.juniorlatalisa</groupId>
+    <artifactId>screenmatch</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <name>Screenmatch</name>
+    <description>Java: Trabalhando com Lambdas, Streams e Spring Framework</description>
+    <url>https://github.com/juniorlatalisa/alura-carreira-java/tree/main/java-trabalhando-lambdas-streams-spring-framework</url>
+
+    <!-- ========================= -->
+    <!-- 🏢 Organização             -->
+    <!-- ========================= -->
+    <organization>
+        <name>Junior Latalisa</name>
+        <url>https://juniorlatalisa.dev.br</url>
+    </organization>
+
+    <!-- ========================= -->
+    <!-- 👤 Desenvolvedor          -->
+    <!-- ========================= -->
+    <developers>
+        <developer>
+            <id>juniorlatalisa</id>
+            <name>Junior Latalisa</name>
+            <url>https://github.com/juniorlatalisa</url>
+        </developer>
+    </developers>
+
+    <!-- ========================= -->
+    <!-- 🔗 SCM (GitHub)           -->
+    <!-- ========================= -->
+    <scm>
+        <connection>scm:git:https://github.com/juniorlatalisa/alura-carreira-java.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/juniorlatalisa/alura-carreira-java.git</developerConnection>
+        <url>https://github.com/juniorlatalisa/alura-carreira-java</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <!-- ========================= -->
+    <!-- 🔧 Propriedades           -->
+    <!-- ========================= -->
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
+    <!-- ========================= -->
+    <!-- 📚 Dependências           -->
+    <!-- ========================= -->
+    <dependencies>
+        <!-- Spring Boot básico -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<groupId>tools.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>3.2.0</version>
+			<scope>compile</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+        <!-- Testes -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+    <!-- ========================= -->
+    <!-- 🛠 Plugins                -->
+    <!-- ========================= -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
