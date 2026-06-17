@@ -1,5 +1,8 @@
 package br.dev.juniorlatalisa.screenmatch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -7,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.dev.juniorlatalisa.screenmatch.model.DadosEpisodio;
 import br.dev.juniorlatalisa.screenmatch.model.DadosSerie;
+import br.dev.juniorlatalisa.screenmatch.model.DadosTemporada;
 import br.dev.juniorlatalisa.screenmatch.service.ConsumoAPI;
 import br.dev.juniorlatalisa.screenmatch.service.ConverteDados;
 
@@ -36,6 +40,15 @@ public class ScreenmatchApplication implements CommandLineRunner {
 
 		final var episodio = conversor.obterDados(DadosEpisodio.class, json);
 		System.out.println(episodio);
+
+		final List<DadosTemporada> temporadas = new ArrayList<>(serie.totalTemporadas());
+		for (int i = 1; i <= serie.totalTemporadas(); i++) {
+			json = consumoApi.obterDados(String //
+					.format("https://www.omdbapi.com/?t=gilmore+girls&season=%s&apikey=%s", i, apiKey));
+			final var temporada = conversor.obterDados(DadosTemporada.class, json);
+			System.out.println(temporada);
+		}
+		temporadas.forEach(System.out::println);
 	}
 
 }
