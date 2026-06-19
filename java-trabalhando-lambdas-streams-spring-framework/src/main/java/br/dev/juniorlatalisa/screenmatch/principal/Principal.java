@@ -3,6 +3,7 @@ package br.dev.juniorlatalisa.screenmatch.principal;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -61,8 +62,25 @@ public class Principal {
         // System.out.println(episodio.titulo());
         // }
         // }
-        temporadas.forEach(temporada -> temporada.episodios() //
-                .forEach(episodio -> System.out.println(episodio.titulo())));
+
+        // temporadas.forEach(temporada -> temporada.episodios() //
+        // .forEach(episodio -> System.out.println(episodio.titulo())));
+
+        final var todosEpisodios = temporadas.stream() //
+                .map(DadosTemporada::episodios)
+                .flatMap(List::stream)
+                // Não é imutável
+                // .collect(Collectors.toList())
+                // É imutável
+                .toList() //
+        ;
+
+        todosEpisodios.stream() //
+                .filter(e -> e.avaliacao().matches("^[0-9].*")) //
+                .sorted(Comparator.comparing(DadosEpisodio::avaliacao).reversed()) //
+                .limit(5) //
+                .map(e -> String.format("%s \t %s", e.avaliacao(), e.titulo())) //
+                .forEach(System.out::println);
     }
 
     private DadosTemporada solicitarDadosTemporada(final int temporada) {
