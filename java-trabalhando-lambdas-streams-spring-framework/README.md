@@ -21,4 +21,5 @@ O objetivo é consolidar conhecimentos, registrar aprendizados e acompanhar a ev
 
 **Notas detalhadas:**  
 
-https://start.spring.io/
+- git commit -s -m "Spring sem Web - Aula 135652 - Trabalhando na coleção de dados"
+
