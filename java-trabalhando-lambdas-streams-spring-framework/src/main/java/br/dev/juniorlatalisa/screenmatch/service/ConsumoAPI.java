@@ -22,9 +22,10 @@ public class ConsumoAPI {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
-        final String json = response.body();
-        return json;
+        if (response.statusCode() == 200) {
+            return response.body();
+        }
+        throw new RuntimeException(response.toString());
     }
 
 }
