@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import br.dev.juniorlatalisa.screenmatch.model.DadosEpisodio;
 import br.dev.juniorlatalisa.screenmatch.model.DadosSerie;
 import br.dev.juniorlatalisa.screenmatch.model.DadosTemporada;
+import br.dev.juniorlatalisa.screenmatch.model.Episodio;
 import br.dev.juniorlatalisa.screenmatch.service.ConsumoAPI;
 import br.dev.juniorlatalisa.screenmatch.service.ConverteDados;
 
@@ -81,6 +83,13 @@ public class Principal {
                 .limit(5) //
                 .map(e -> String.format("%s \t %s", e.avaliacao(), e.titulo())) //
                 .forEach(System.out::println);
+
+        List<Episodio> episodios = temporadas.stream()
+                .flatMap(t -> t.episodios().stream()
+                        .map(d -> new Episodio(t.numero(), d)))
+                .collect(Collectors.toList());
+
+        episodios.forEach(System.out::println);
     }
 
     private DadosTemporada solicitarDadosTemporada(final int temporada) {
