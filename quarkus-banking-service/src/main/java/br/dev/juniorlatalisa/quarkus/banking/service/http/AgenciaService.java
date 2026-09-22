@@ -26,6 +26,10 @@ public class AgenciaService {
         return agencias.add(agencia);
     }
 
+    public List<Agencia> listarTodas() {
+        return agencias.stream().sorted((a1, a2) -> a1.id().compareTo(a2.id())).toList();
+    }
+
     public Agencia buscarPorId(int id) {
         return agencias.stream().filter(agencia -> agencia.id().equals(id)).toList().getFirst();
     }

@@ -1,9 +1,12 @@
-package br.dev.juniorlatalisa.controller;
+package br.dev.juniorlatalisa.quarkus.banking.controller;
+
+import java.util.List;
 
 import org.jboss.resteasy.reactive.RestResponse;
 
 import br.dev.juniorlatalisa.quarkus.banking.domain.Agencia;
 import br.dev.juniorlatalisa.quarkus.banking.service.http.AgenciaService;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -19,12 +22,19 @@ public class AgenciaController {
         this.agenciaService = agenciaService;
     }
 
+    @Inject
     private final AgenciaService agenciaService;
 
     @POST
     public RestResponse<Void> cadastrar(Agencia agencia, @Context UriInfo uriInfo) {
         agenciaService.cadastrar(agencia);
         return RestResponse.created(uriInfo.getAbsolutePath());
+    }
+
+    @GET
+    public RestResponse<List<Agencia>> buscarTodas() {
+        final var agencias = this.agenciaService.listarTodas();
+        return RestResponse.ok(agencias);
     }
 
     @GET
