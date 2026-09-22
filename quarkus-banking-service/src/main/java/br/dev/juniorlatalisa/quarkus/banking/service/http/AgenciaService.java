@@ -14,19 +14,29 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class AgenciaService {
 
     @RestClient
-    SituacaoCadastralHttpService situacaoCadastralHttpService;
+    private SituacaoCadastralHttpService situacaoCadastralHttpService;
 
     private final List<Agencia> agencias = new ArrayList<>();
 
-    public void cadastrar(Agencia agencia) {
+    public boolean cadastrar(Agencia agencia) {
         final var response = situacaoCadastralHttpService.buscarPorCnpj(agencia.cnpj());
-
-        if (SituacaoCadastral.ATIVO.equals(response.situacaoCadastral())) {
-            agencias.add(agencia);
-        } else {
-             throw new AgenciaNaoAtivaOuNaoEncontradaException();
+        if (response == null || !SituacaoCadastral.ATIVO.equals(response.situacaoCadastral())) {
+            throw new AgenciaNaoAtivaOuNaoEncontradaException();
         }
-    
+        return agencias.add(agencia);
+    }
+
+    public Agencia buscarPorId(int id) {
+        return agencias.stream().filter(agencia -> agencia.id().equals(id)).toList().getFirst();
+    }
+
+    public boolean deletar(int id) {
+        return agencias.removeIf(agencia -> agencia.id().equals(id));
+    }
+
+    public boolean alterar(Agencia agencia) {
+        deletar(agencia.id());
+        return cadastrar(agencia);
     }
 
 }
