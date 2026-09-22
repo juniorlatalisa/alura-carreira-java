@@ -1,4 +1,4 @@
-package br.dev.juniorlatalisa.quarkus.banking.service.http;
+package br.dev.juniorlatalisa.quarkus.banking.domain.http;
 
 public record AgenciaHttp(
     String nome,
