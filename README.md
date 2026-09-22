@@ -13,3 +13,4 @@ O objetivo é consolidar conhecimentos, registrar aprendizados e acompanhar a ev
 - https://start.spring.io/
 - https://mvnrepository.com/
 - https://temp-mail.org
+- https://code.quarkus.io/
