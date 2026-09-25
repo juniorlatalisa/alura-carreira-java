@@ -19,7 +19,7 @@ public class AgenciaService {
     private final List<Agencia> agencias = new ArrayList<>();
 
     public boolean cadastrar(Agencia agencia) {
-        final var response = situacaoCadastralHttpService.buscarPorCnpj(agencia.cnpj());
+        final var response = situacaoCadastralHttpService.buscarPorCnpj(agencia.getCnpj());
         if (response == null || !SituacaoCadastral.ATIVO.equals(response.situacaoCadastral())) {
             throw new AgenciaNaoAtivaOuNaoEncontradaException();
         }
@@ -27,19 +27,19 @@ public class AgenciaService {
     }
 
     public List<Agencia> listarTodas() {
-        return agencias.stream().sorted((a1, a2) -> a1.id().compareTo(a2.id())).toList();
+        return agencias.stream().sorted((a1, a2) -> a1.getId().compareTo(a2.getId())).toList();
     }
 
     public Agencia buscarPorId(int id) {
-        return agencias.stream().filter(agencia -> agencia.id().equals(id)).toList().getFirst();
+        return agencias.stream().filter(agencia -> agencia.getId().equals(id)).toList().getFirst();
     }
 
     public boolean deletar(int id) {
-        return agencias.removeIf(agencia -> agencia.id().equals(id));
+        return agencias.removeIf(agencia -> agencia.getId().equals(id));
     }
 
     public boolean alterar(Agencia agencia) {
-        deletar(agencia.id());
+        deletar(agencia.getId());
         return cadastrar(agencia);
     }
 
