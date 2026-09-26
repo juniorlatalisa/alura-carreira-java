@@ -7,6 +7,7 @@ import org.jboss.resteasy.reactive.RestResponse;
 import br.dev.juniorlatalisa.quarkus.banking.domain.Agencia;
 import br.dev.juniorlatalisa.quarkus.banking.service.http.AgenciaService;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -26,6 +27,7 @@ public class AgenciaController {
     private final AgenciaService agenciaService;
 
     @POST
+    @Transactional
     public RestResponse<Void> cadastrar(Agencia agencia, @Context UriInfo uriInfo) {
         agenciaService.cadastrar(agencia);
         return RestResponse.created(uriInfo.getAbsolutePath());
@@ -46,12 +48,14 @@ public class AgenciaController {
 
     @DELETE
     @Path("{id}")
+    @Transactional
     public RestResponse<Void> deletar(Integer id) {
         final var sucesso = this.agenciaService.deletar(id);
         return sucesso ? RestResponse.ok() : RestResponse.notFound();
     }
 
     @PUT
+    @Transactional
     public RestResponse<Void> alterar(Agencia agencia) {
         this.agenciaService.alterar(agencia);
         return RestResponse.ok();
