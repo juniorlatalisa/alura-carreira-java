@@ -1,6 +1,5 @@
 package br.dev.juniorlatalisa.quarkus.banking.service.http;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
@@ -12,7 +11,6 @@ import br.dev.juniorlatalisa.quarkus.banking.repository.AgenciaRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.PersistenceException;
-import jakarta.resource.spi.IllegalStateException;
 
 @ApplicationScoped
 public class AgenciaService {
